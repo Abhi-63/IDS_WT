@@ -1,0 +1,28 @@
+{
+  "name": "ids_wt",
+  "version": "1.0.0",
+  "description": "Project",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abhi8971/IDS_WT.git"
+  },
+  "author": "skanda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Abhi8971/IDS_WT/issues"
+  },
+  "homepage": "https://github.com/Abhi8971/IDS_WT#readme",
+  "dependencies": {
+    "@types/ol": "^4.6.2",
+    "ol": "^5.2.0"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.10.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html",
+    "build": "parcel build --public-url . index.html"
+  }
+}

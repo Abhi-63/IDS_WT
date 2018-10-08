@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.2.0/css/ol.css"
+        type="text/css">
+    <style>
+        .map {
+        height: 400px;
+        width: 100%;
+      }
+    </style>
+    <style>
+        header {
+                display: block;
+                background-color: #3cb371;
+                text-align: center;
+                padding: 30px;
+                font-size: 25px;
+                color: rgb(251, 255, 253);
+            }
+        
+            footer {
+                background-color: rgb(65, 62, 62);
+                padding: 50px;
+                text-align: center;
+                color: white;
+            }
+            #map{
+                border:4px solid black;height:720px;width:1280px;margin: 0 auto;
+            }
+        </style>
+    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.2.0/build/ol.js"></script>
+    <title>OpenLayers example</title>
+</head>
+
+<body>
+    <header>
+        <h1>ClimateChange.org</h1>
+    </header>
+    <br><br>
+    <div id="map"></div>
+    <button id="fly-to-bern">Fly to Bern</button>
+    <div id="content"></div>
+    <br><br>
+    <footer>Contact Us About Us</footer>
+    <script type="text/javascript">
+        var bern = ol.proj.fromLonLat([7.4458, 46.95]);
+              var view = new ol.View({
+                    center: ol.proj.fromLonLat([37.41, 8.82]),
+                    zoom: 6
+                });
+        var map = new ol.Map({
+            target: 'map',
+            layers: [
+                new ol.layer.Tile({
+                    source: new ol.source.OSM()
+                })
+            ],
+            loadTilesWhileAnimating: true,
+            view: view
+        });
+              function onClick(id, callback) {
+                    document.getElementById(id).addEventListener('click', callback);
+                }
+              function flyTo(location, done) {
+                    var duration = 2000;
+                    var zoom = view.getZoom();
+                    var parts = 2;
+                    var called = false;
+                    function callback(complete) {
+                        --parts;
+                        if (called) {
+                            return;
+                        }
+                        if (parts === 0 || !complete) {
+                            called = true;
+                            done(complete);
+                        }
+                    }
+                    view.animate({
+                        center: location,
+                        duration: duration
+                    }, callback);
+                    view.animate({
+                        zoom: zoom - 1,
+                        duration: duration / 2
+                    }, {
+                            zoom: zoom,
+                            duration: duration / 2
+                        }, callback);
+                }
+            
+                onClick('fly-to-bern', function () {
+                    flyTo(bern, function () { });
+                });
+
+    </script>
+</body>
+
+</html>
