@@ -41,7 +41,7 @@
     <br><br>
     <div id="map"></div>
     <button id="fly-to-bern">Fly to Bern</button>
-    <div id="content"></div>
+
     <br><br>
     <footer>Contact Us About Us</footer>
     <script type="text/javascript">
@@ -50,6 +50,7 @@
                     center: ol.proj.fromLonLat([37.41, 8.82]),
                     zoom: 6
                 });
+
         var map = new ol.Map({
             target: 'map',
             layers: [
@@ -60,6 +61,11 @@
             loadTilesWhileAnimating: true,
             view: view
         });
+           map.on('click', function (evt) {
+                var coord = map.getCoordinateFromPixel(evt.pixel);
+                var newpos = ol.proj.transform(coord, 'EPSG:900913' , 'EPSG:4326');
+                alert(newpos);
+           });
               function onClick(id, callback) {
                     document.getElementById(id).addEventListener('click', callback);
                 }
