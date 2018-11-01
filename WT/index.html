@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ClimateChange.org</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.2.0/css/ol.css" type="text/css">
+  <!-- Fonts -->
+  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="css/animate.css" rel="stylesheet" />
+  <!-- Squad theme CSS -->
+  <link href="css/style.css" rel="stylesheet">
+  <link href="color/default.css" rel="stylesheet">
+
+  <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.2.0/build/ol.js"></script>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+  
+    /* Full-width input fields */
+    input[type=text],
+    input[type=password] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+  
+    /* Set a style for all buttons */
+    button {
+      background-color:  #fff;;
+      color: black;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      background: transparent;
+    }
+  
+    button:hover {
+      opacity: 0.8 ;
+    }
+  
+    /* Extra styles for the cancel button */
+    .cancelbtn {
+      width: auto;
+      padding: 10px 18px;
+      background-color: #f44336;
+    }
+  
+    /* Center the image and position the close button */
+    .imgcontainer {
+      text-align: center;
+      margin: 24px 0 12px 0;
+      position: relative;
+    }
+  
+    img.avatar {
+      width: 40%;
+      border-radius: 50%;
+    }
+  
+    .container {
+      padding: 16px;
+    }
+  
+    span.psw {
+      float: right;
+      padding-top: 16px;
+    }
+  
+    /* The Modal (background) */
+    .modal {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+      z-index: 1;
+      /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0);
+      /* Fallback color */
+      background-color: rgba(0, 0, 0, 0.4);
+      /* Black w/ opacity */
+      padding-top: 60px;
+    }
+  
+    /* Modal Content/Box */
+    .modal-content {
+      background-color: #fefefe;
+      margin: 5% auto 15% auto;
+      /* 5% from the top, 15% from the bottom and centered */
+      border: 1px solid #888;
+      width: 80%;
+      /* Could be more or less, depending on screen size */
+    }
+  
+    /* The Close Button (x) */
+    .close {
+      position: absolute;
+      right: 25px;
+      top: 0;
+      color: #000;
+      font-size: 35px;
+      font-weight: bold;
+    }
+  
+    .close:hover,
+    .close:focus {
+      color: red;
+      cursor: pointer;
+    }
+  
+    /* Add Zoom Animation */
+    .animate {
+      -webkit-animation: animatezoom 0.6s;
+      animation: animatezoom 0.6s
+    }
+  
+    @-webkit-keyframes animatezoom {
+      from {
+        -webkit-transform: scale(0)
+      }
+  
+      to {
+        -webkit-transform: scale(1)
+      }
+    }
+  
+    @keyframes animatezoom {
+      from {
+        transform: scale(0)
+      }
+  
+      to {
+        transform: scale(1)
+      }
+    }
+  
+    /* Change styles for span and cancel button on extra small screens */
+    @media screen and (max-width: 300px) {
+      span.psw {
+        display: block;
+        float: none;
+      }
+  
+      .cancelbtn {
+        width: 100%;
+      }
+    }
+  </style>
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+  <!-- Preloader -->
+  <div id="preloader">
+    <div id="load"></div>
+  </div>
+
+  <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header page-scroll">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+        <a class="navbar-brand" href="index.html">
+          <h1>ClimateChange.org</h1>
+        </a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><button onclick="window.location.href='#intro'" style="width:auto;">Home</button></li>
+          <li><button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Register</button></li>
+          <li><button onclick="window.location.href='#intro'">Sign In</button></li>
+          <li><button onclick="window.location.href='#about'" style="width:auto;">About Us</button></li>
+          <li><button onclick="window.location.href='#contact'" style="width:auto;">Contact Us</button></li>
+          <li class="dropdown">
+            <button onclick="window.location.href='#intro'" style="width:auto;" class="dropdown-toggle" data-toggle="dropdown">Details<b class="caret"></b></a></button>
+            <ul class="dropdown-menu">
+              <li><a href="#">Data Set</a></li>
+              <li><a href="#">Methodology</a></li>
+              <li><a href="#">More </a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
+
+  <!-- Section: intro -->
+  <section id="intro" class="intro">
+
+    <div class="slogan">
+      <h2>Welcome to <span class="text_color">ClimateChange.org</span> </h2>
+      <h4>Join Us in making the world a better place ! </h4>
+      <h1 style="color: azure">Let's Get Started ?</h1>
+    </div>
+    <div class="page-scroll">
+      <a href="#map-main" class="btn btn-circle">
+				<i class="fa fa-angle-double-down animated"></i>
+			</a>
+    </div>
+  </section>
+  <!-- /Section: intro -->
+
+  <!-- /Section: map-->
+    <section id="map-main" class="home-section text-center" >
+      <div class="container" >
+        <h2>Select a place to get a report</h2>
+        <div class="row"><div id="map" class="col-md-12"></div></div>
+        <br>
+        <button id="fly-to-bern" class="btn btn-skin" onclick="flyTo(bern,done)" style="height:40px;width:70px">Bern</button>
+        <button id="fly-to-bangalore" class="btn btn-skin">Bangalore</button>
+        <button id="fly-to-delhi" class="btn btn-skin">Delhi</button>
+        <button id="fly-to-newyork" class="btn btn-skin">New York</button>
+      </div>
+    </section>
+  <!-- /Section: map -->
+
+
+  <!-- Section: about -->
+
+  <section id="about" class="home-section text-center">
+    <div class="heading-about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2">
+            <div class="wow bounceInDown" data-wow-delay="0.4s">
+              <div class="section-heading">
+                <h2>About us</h2>
+                <i class="fa fa-2x fa-angle-down"></i>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+  
+      <div class="row">
+        <div class="col-lg-2 col-lg-offset-5">
+          <hr class="marginbot-50">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="wow bounceInUp" data-wow-delay="0.2s">
+            <div class="team boxed-grey">
+              <div class="inner">
+                <h5>Skanda</h5>
+                <p class="subtitle">Lead Full Stack Developer</p>
+                <div class="avatar"><img src="img/team/4.jpg" alt="" class="img-responsive img-circle" /></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="wow bounceInUp" data-wow-delay="0.5s">
+            <div class="team boxed-grey">
+              <div class="inner">
+                <h5>Abhishek</h5>
+                <p class="subtitle">Front End Developer</p>
+                <div class="avatar"><img src="img/team/3.jpg" alt="" class="img-responsive img-circle" /></div>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="wow bounceInUp" data-wow-delay="0.8s">
+            <div class="team boxed-grey">
+              <div class="inner">
+                <h5>Venkatesh</h5>
+                <p class="subtitle">Back End Developer</p>
+                <div class="avatar"><img src="img/team/3.jpg" alt="" class="img-responsive img-circle" /></div>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /Section: about -->
+
+
+
+  <!-- Section: contact -->
+  <section id="contact" class="home-section text-center">
+    <div class="heading-contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2">
+            <div class="wow bounceInDown" data-wow-delay="0.4s">
+              <div class="section-heading">
+                <h2>Get in touch</h2>
+                <i class="fa fa-2x fa-angle-down"></i>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+
+      <div class="row">
+        <div class="col-lg-2 col-lg-offset-5">
+          <hr class="marginbot-50">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="boxed-grey">
+
+            <div id="sendmessage">Your message has been sent. Thank you!</div>
+            <div id="errormessage"></div>
+            <form id="contact-form" action="" method="post" role="form" class="contactForm">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="name">
+                                Name</label>
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                    <div class="validation"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="email">
+                                Email Address</label>
+                    <div class="form-group">
+                      <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                      <div class="validation"></div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="subject">
+                                Subject</label>
+                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                    <div class="validation"></div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="name">
+                                Message</label>
+                    <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                    <div class="validation"></div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <button type="submit" class="btn btn-skin pull-right" id="btnContactUs">
+                            Send Message</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="widget-contact">
+            <h5>Main Office</h5>
+
+            <address>
+				  <strong>PES University</strong><br>
+          100 Feet Ring Road,
+          BSK III Stage,Bangalore-560085<br>
+				  Phone : +91 80 26721983
+				</address>
+
+        <address>
+				  <strong>Email</strong><br>
+				  <a href="mailto:#">skandavc18@gmail.com</a>
+				</address>
+            <address>
+				  <strong>We're on social networks</strong><br>
+                       	<ul class="company-social">
+                            <li class="social-facebook"><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                            <li class="social-twitter"><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                            <li class="social-dribble"><a href="#" target="_blank"><i class="fa fa-dribbble"></i></a></li>
+                            <li class="social-google"><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+				</address>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- /Section: contact -->
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-12">
+          <div class="wow shake" data-wow-delay="0.4s">
+            <div class="page-scroll marginbot-30">
+              <a href="#intro" id="totop" class="btn btn-circle">
+							<i class="fa fa-angle-double-up animated"></i>
+						</a>
+            </div>
+          </div>
+          <p>&copy;ClimateChange.org. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core JavaScript Files -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.min.js"></script>
+  <script src="js/jquery.scrollTo.js"></script>
+  <script src="js/wow.min.js"></script>
+  <!-- Custom Theme JavaScript -->
+  <script src="js/custom.js"></script>
+  <script src="contactform/contactform.js"></script>
+  
+      <script type="text/javascript">
+        var done= function () { };
+        function getMinZoom() {
+            var width = window.innerHeight;
+            return Math.ceil(Math.LOG2E * Math.log(width / 256));
+          }
+           var initialZoom = getMinZoom();
+        var bern = ol.proj.fromLonLat([7.4458, 46.95]);
+        var view = new ol.View({
+          center: ol.proj.fromLonLat([37.41, 8.82]),
+          zoom: initialZoom+2,
+          minZoom: initialZoom
+        });
+
+        var map = new ol.Map({
+          target: 'map',
+          layers: [
+            new ol.layer.Tile({
+              source: new ol.source.OSM()
+            })
+          ],
+          loadTilesWhileAnimating: true,
+          view: view
+        });
+        function CenterMap(long, lat) {
+            console.log("Long: " + long + " Lat: " + lat);
+            map.getView().setCenter(ol.proj.transform([long, lat], 'EPSG:4326', 'EPSG:3857'));
+          }
+          CenterMap(77.5946, 12.9716);
+        map.on('click', function (evt) {
+          var coord = map.getCoordinateFromPixel(evt.pixel);
+          var newpos = ol.proj.transform(coord, 'EPSG:900913', 'EPSG:4326');
+          alert(newpos);
+        });
+        function onClick(id, callback) {
+          document.getElementById(id).addEventListener('click', callback);
+        }
+        function flyTo(location, done) {
+          var duration = 2000;
+          var zoom = view.getZoom();
+          var parts = 2;
+          var called = false;
+          
+          function callback(complete) {
+            --parts;
+            if (called) {
+              return;
+            }
+            if (parts === 0 || !complete) {
+              called = true;
+              done(complete);
+            }
+          }
+          view.animate({
+            center: location,
+            duration: duration
+          }, callback);
+          view.animate({
+            zoom: zoom - 1,
+            duration: duration / 2
+          }, {
+              zoom: zoom,
+              duration: duration / 2
+            }, callback);
+
+        }
+ 
+
+
+      </script>
+      <div id="id01" class="modal">
+      
+        <form class="modal-content animate" action="/action_page.php">
+          <div class="imgcontainer">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <img src="img_avatar2.png" alt="Avatar" class="avatar">
+          </div>
+      
+          <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+      
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+      
+            <button type="submit">Login</button>
+            <label>
+              <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+          </div>
+      
+          <div class="container" style="background-color:#f1f1f1">
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+            <span class="psw">Forgot <a href="#">password?</a></span>
+          </div>
+        </form>
+      </div>
+      
+      <script>
+        // Get the modal
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+      </script>
+
+
+</body>
+
+</html>
