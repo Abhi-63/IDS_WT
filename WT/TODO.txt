@@ -1,0 +1,11 @@
+Jobs to be done :
+
+1. design a longin and signup page and add it to the home page. While registering , the user's name, occupation , password for account,age,gender and other info must be taken
+2. PHP backend for creating a Database and storing the user's name and password and other details.
+3. In the main homepage make the design better and add more buttons for all major cities like Delhi, New York, Mumbai , Singapore, London, Moscow,etc Make atleast 20 buttons.
+   Some have been added. But they size is not proper and are not aligned properly. So make them proper.Add their respective funtionalities as well. The functions have already been created. Just call them with proper latitudes and longitudes.
+   
+Finish it as quickly as possible.
+
+WE HAVE LESS TIME !
+
